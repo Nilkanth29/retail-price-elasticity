@@ -1,0 +1,13 @@
+{
+  "n_transactions": 18783,
+  "n_products": 212,
+  "total_combined_delta": 6878,
+  "total_promo_revenue": 22218,
+  "pct_opportunity_vs_promo_revenue": 31.0,
+  "total_category_revenue": 57296,
+  "pct_opportunity_vs_total_category_revenue": 12.0,
+  "categories": [
+    "Eggs",
+    "Bath Tissues"
+  ]
+}
