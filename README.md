@@ -1,6 +1,6 @@
 # Retail Price Elasticity & Promotion Uplift Analysis
 
-**Status: in progress — data warehouse built, EDA next**
+**Status: complete — all 7 phases delivered, see Results below**
 
 ## The business question
 
@@ -61,12 +61,12 @@ con.execute(open('sql/01_build_warehouse.sql').read().replace(chr(45)*2 + chr(45
 ## Roadmap
 
 - [x] **Phase 1 — Data engineering**: star-schema warehouse in DuckDB (fact_transactions, fact_promotions, dim_product, dim_household, dim_campaign)
-- [ ] **Phase 2 — EDA**: price/promo distributions over time, seasonality, cross-store variation, category selection
-- [ ] **Phase 3 — Price elasticity modelling**: log-log demand model with store/week fixed effects to address price endogeneity
-- [ ] **Phase 4 — Promotion uplift**: causal estimate of display/mailer effect, separated from the price effect
-- [ ] **Phase 5 — Optimization**: simulate revenue impact of alternative promo/price scenarios; recommend a promo calendar
-- [ ] **Phase 6 — Dashboard**: interactive Streamlit app for exploring elasticity/uplift by category
-- [ ] **Phase 7 — Write-up**: business memo translating findings into $ impact
+- [x] **Phase 2 — EDA**: price/promo distributions over time, seasonality, cross-store variation, category selection
+- [x] **Phase 3 — Price elasticity modelling**: log-log demand model with store/week fixed effects to address price endogeneity
+- [x] **Phase 4 — Promotion uplift**: causal estimate of display/mailer effect, separated from the price effect
+- [x] **Phase 5 — Optimization**: simulate revenue impact of alternative promo/price scenarios; recommend a promo calendar
+- [x] **Phase 6 — Dashboard**: interactive Streamlit app for exploring elasticity/uplift by category
+- [x] **Phase 7 — Write-up**: business memo translating findings into $ impact
 
 ## Focus categories (initial)
 
@@ -78,3 +78,27 @@ correctly computed):
 |---|---|---|---|---|---|---|
 | Eggs | 16,011 | 91 | $22.4K | $1.18 | 0.49 | 31.3% |
 | Bath Tissues | 8,007 | 121 | $34.9K | $3.99 | 0.75 | 23.8% |
+
+## Results
+
+The full analytical trail lives in `notebooks/`, in order: data exploration,
+price elasticity, promotion heterogeneity, and optimization. Each notebook
+is already executed, with real output and charts included, so it renders
+fully on GitHub without anyone needing to run it.
+
+The findings are summarized two ways for a non technical reader. An
+interactive dashboard in `dashboard/` (see `dashboard/README.md` for setup
+and deployment) lets you explore price trends, elasticity, and the
+discount depth optimization by category. A one page business memo in
+`docs/business_memo.pdf` gives a stakeholder facing summary with the
+recommendation and its honest caveats.
+
+Headline result: a model implied revenue opportunity of roughly 31 percent
+on the four active promotion programs studied, concentrated mostly in
+reducing over discounting on three of them, with one program, Eggs mailer
+promotions, appearing under discounted instead. That estimate carries a
+real caveat, most of it rests on corner solution results that assume
+discount depth was effectively unrelated to demand once fixed effects are
+controlled for, an assumption that is plausible but untested. The memo and
+the optimization notebook both recommend a controlled test before acting
+on it at scale.
