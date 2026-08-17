@@ -1,0 +1,7 @@
+﻿data_raw/
+data/
+warehouse.duckdb
+__pycache__/
+*.pyc
+.DS_Store
+venv/
